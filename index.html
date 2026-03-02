@@ -41,23 +41,20 @@
 
   .hero-banner-wrap {
     width: 100%;
-    max-height: 420px;
-    overflow: hidden;
     position: relative;
   }
 
   .hero-banner-wrap::after {
     content: '';
     position: absolute;
-    bottom: 0; left: 0; right: 0; height: 60%;
+    bottom: 0; left: 0; right: 0; height: 40%;
     background: linear-gradient(to bottom, transparent, #0a1628);
     pointer-events: none;
   }
 
   .hero-banner-img {
     width: 100%;
-    object-fit: cover;
-    object-position: center top;
+    height: auto;
     display: block;
   }
 
@@ -681,33 +678,14 @@
 
 <!-- ── SCHEDULE ── -->
 <section id="schedule" class="schedule-section">
-  <div class="schedule-inner">
-    <div>
-      <p class="section-label">Connect with MDB</p>
-      <h2 class="schedule-title">Talk Live<br>with <em style="font-style:italic;color:var(--gold)">MDB Capital</em></h2>
-      <p class="schedule-desc">Have questions? Want to learn more about MDB and Public Venture? Our team is ready to connect with you one-on-one. Schedule a call at a time that works for you.</p>
-      <a href="#" class="btn-primary" style="font-size:16px;padding:16px 32px;">
-        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-        Schedule a Call with MDB
-      </a>
-    </div>
-
-    <div class="contact-card">
-      <div class="contact-icon">📞</div>
-      <div class="contact-title">Speak with Our Team</div>
-      <p class="contact-desc">Our team of public venture specialists is available for one-on-one conversations about investment strategies, portfolio alignment, and how MDB Capital can serve your goals.</p>
-      <div class="contact-detail">
-        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-        <span><strong>945.262.9010</strong></span>
-      </div>
-      <div class="contact-detail">
-        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/></svg>
-        <span><a href="https://mdb.com" style="color:var(--blue-bright);text-decoration:none">mdb.com</a></span>
-      </div>
-      <div style="margin-top:20px">
-        <a href="#" class="btn-primary" style="width:100%;justify-content:center;">Book a Time →</a>
-      </div>
-    </div>
+  <div style="max-width:1100px;margin:0 auto;padding:80px 40px;text-align:center;">
+    <p class="section-label">Connect with MDB</p>
+    <h2 class="schedule-title" style="margin:0 auto 20px;">Talk Live with <em style="font-style:italic;color:var(--gold)">MDB Capital</em></h2>
+    <p class="schedule-desc" style="max-width:560px;margin:0 auto 36px;">Have questions? Want to learn more about MDB and Public Venture? Let's connect live.</p>
+    <a href="#" class="btn-primary" style="font-size:16px;padding:16px 40px;display:inline-flex;">
+      <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+      Schedule a Call with MDB
+    </a>
   </div>
 </section>
 
