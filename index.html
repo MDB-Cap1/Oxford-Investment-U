@@ -4,39 +4,78 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>The Asymmetric Playbook | MDB Capital</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<!-- Gotham is a licensed font; we use Montserrat as the closest Google Fonts match -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --navy: #0a1628;
-    --navy-mid: #0e2040;
-    --navy-light: #152a52;
-    --blue-accent: #1a56db;
-    --blue-bright: #3b82f6;
-    --gold: #f0b429;
-    --white: #ffffff;
-    --off-white: #f0f4ff;
-    --text-muted: #8ba3c7;
-    --border: rgba(59,130,246,0.18);
-    --card-bg: rgba(21, 42, 82, 0.6);
+    /* MDB Brand Colors - Primary */
+    --mdb-blue:        #004B87;   /* Pantone 301C */
+    --mdb-black:       #000000;   /* Pantone Black */
+    /* MDB Brand Colors - Secondary */
+    --mdb-blue-light:  #418FDE;   /* Pantone 279C */
+    --mdb-slate:       #A6BBC8;   /* Pantone 5435C */
+    /* Page darks (derived from primary blue) */
+    --bg-dark:         #001f3d;
+    --bg-mid:          #002d57;
+    --bg-card:         rgba(0, 37, 70, 0.7);
+    --border:          rgba(65, 143, 222, 0.22);
+    --text-muted:      #A6BBC8;
+    --white:           #ffffff;
   }
 
   html { scroll-behavior: smooth; }
 
   body {
-    font-family: 'DM Sans', sans-serif;
-    background-color: var(--navy);
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--bg-dark);
     color: var(--white);
     line-height: 1.6;
     overflow-x: hidden;
   }
 
+  /* ── MDB LOGO SVG (inline, white version for dark bg) ── */
+  .mdb-logo-svg {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .mdb-logo-mark {
+    width: 52px; height: 52px;
+    border: 2.5px solid white;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .mdb-logo-mark span {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 17px;
+    letter-spacing: 0.5px;
+    color: white;
+  }
+
+  .mdb-logo-wordmark {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 0.12em;
+    color: white;
+    text-transform: uppercase;
+  }
+
+  /* Footer logo — smaller */
+  .mdb-logo-sm .mdb-logo-mark { width: 38px; height: 38px; border-width: 2px; }
+  .mdb-logo-sm .mdb-logo-mark span { font-size: 13px; }
+  .mdb-logo-sm .mdb-logo-wordmark { font-size: 15px; }
+
   /* ── HERO ── */
   .hero {
+    background: var(--bg-dark);
     position: relative;
     overflow: hidden;
-    background: linear-gradient(135deg, #060f22 0%, #0a1628 60%, #071530 100%);
   }
 
   .hero-banner-wrap {
@@ -47,8 +86,8 @@
   .hero-banner-wrap::after {
     content: '';
     position: absolute;
-    bottom: 0; left: 0; right: 0; height: 40%;
-    background: linear-gradient(to bottom, transparent, #0a1628);
+    bottom: 0; left: 0; right: 0; height: 45%;
+    background: linear-gradient(to bottom, transparent, var(--bg-dark));
     pointer-events: none;
   }
 
@@ -58,113 +97,54 @@
     display: block;
   }
 
-  .hero-bg-mesh {
-    position: absolute; inset: 0;
-    background:
-      radial-gradient(ellipse 80% 60% at 70% 40%, rgba(26,86,219,0.18) 0%, transparent 70%),
-      radial-gradient(ellipse 50% 40% at 20% 80%, rgba(59,130,246,0.10) 0%, transparent 60%);
-    pointer-events: none;
-  }
-
-  .hero-grid-lines {
-    position: absolute; inset: 0;
-    background-image:
-      linear-gradient(rgba(59,130,246,0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(59,130,246,0.05) 1px, transparent 1px);
-    background-size: 60px 60px;
-    pointer-events: none;
-  }
-
   .hero-content {
     position: relative;
     z-index: 2;
     max-width: 1100px;
     margin: 0 auto;
-    padding: 48px 40px 80px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
+    padding: 32px 40px 72px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
   }
 
   .hero-badge {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: rgba(26,86,219,0.2);
-    border: 1px solid rgba(59,130,246,0.3);
+    background: rgba(0, 75, 135, 0.4);
+    border: 1px solid rgba(65,143,222,0.45);
     border-radius: 100px;
-    padding: 6px 16px;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
+    padding: 6px 18px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--blue-bright);
-    margin-bottom: 24px;
+    color: var(--mdb-blue-light);
   }
 
   .hero-badge::before {
     content: '';
     width: 6px; height: 6px;
     border-radius: 50%;
-    background: var(--blue-bright);
+    background: var(--mdb-blue-light);
     animation: pulse 2s infinite;
   }
 
   @keyframes pulse {
     0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
+    50% { opacity: 0.35; }
   }
 
-  .hero-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(36px, 5vw, 58px);
-    font-weight: 900;
-    line-height: 1.08;
-    color: var(--white);
-    margin-bottom: 12px;
-  }
-
-  .hero-title em {
-    font-style: italic;
-    color: var(--gold);
-  }
-
-  .hero-subtitle {
-    font-size: 16px;
+  .hero-tagline {
+    font-size: 14px;
+    font-weight: 500;
     color: var(--text-muted);
-    font-weight: 400;
-    margin-bottom: 8px;
     letter-spacing: 0.04em;
-    text-transform: uppercase;
   }
 
-  .hero-powered {
-    font-size: 15px;
-    color: var(--text-muted);
-    margin-bottom: 36px;
-  }
-
-  .hero-powered strong {
-    color: var(--blue-bright);
-    font-weight: 600;
-  }
-
-  .mdb-logo-box {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--blue-accent);
-    color: white;
-    font-family: 'Playfair Display', serif;
-    font-weight: 900;
-    font-size: 22px;
-    width: 56px; height: 56px;
-    border-radius: 10px;
-    margin-bottom: 28px;
-    letter-spacing: -1px;
-    box-shadow: 0 0 30px rgba(26,86,219,0.4);
-  }
+  .hero-tagline strong { color: var(--mdb-blue-light); font-weight: 700; }
 
   .hero-cta-group {
     display: flex;
@@ -172,27 +152,30 @@
     flex-wrap: wrap;
   }
 
+  /* ── BUTTONS ── */
   .btn-primary {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: var(--blue-accent);
+    background: var(--mdb-blue);
     color: white;
-    padding: 14px 28px;
-    border-radius: 8px;
-    font-size: 15px;
-    font-weight: 600;
+    padding: 13px 28px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
     text-decoration: none;
-    border: none;
+    border: 2px solid var(--mdb-blue);
     cursor: pointer;
     transition: all 0.2s;
-    box-shadow: 0 4px 20px rgba(26,86,219,0.35);
   }
 
   .btn-primary:hover {
-    background: #1d4ed8;
+    background: #005fa8;
+    border-color: #005fa8;
     transform: translateY(-2px);
-    box-shadow: 0 8px 28px rgba(26,86,219,0.5);
+    box-shadow: 0 8px 24px rgba(0,75,135,0.45);
   }
 
   .btn-outline {
@@ -200,24 +183,49 @@
     align-items: center;
     gap: 8px;
     background: transparent;
-    color: var(--blue-bright);
-    padding: 14px 28px;
-    border-radius: 8px;
-    font-size: 15px;
-    font-weight: 600;
+    color: white;
+    padding: 13px 28px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
     text-decoration: none;
-    border: 1.5px solid rgba(59,130,246,0.4);
+    border: 2px solid rgba(255,255,255,0.35);
     cursor: pointer;
     transition: all 0.2s;
   }
 
   .btn-outline:hover {
-    border-color: var(--blue-bright);
-    background: rgba(59,130,246,0.08);
+    border-color: white;
+    background: rgba(255,255,255,0.08);
     transform: translateY(-2px);
   }
 
+  /* ── NAV BAR ── */
+  .topbar {
+    background: var(--mdb-black);
+    padding: 16px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
+  .topbar-right {
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+  }
+
+  .topbar-right a {
+    color: var(--mdb-blue-light);
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: 600;
+    transition: color 0.2s;
+  }
+
+  .topbar-right a:hover { color: white; }
 
   /* ── SECTIONS ── */
   .section {
@@ -229,69 +237,68 @@
   .section-divider {
     border: none;
     border-top: 1px solid var(--border);
-    margin: 0;
   }
 
   .section-label {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--blue-bright);
+    color: var(--mdb-blue-light);
     margin-bottom: 12px;
-    opacity: 0.8;
   }
 
   .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(26px, 3.5vw, 38px);
-    font-weight: 700;
+    font-size: clamp(24px, 3vw, 34px);
+    font-weight: 800;
     line-height: 1.2;
     color: var(--white);
     margin-bottom: 16px;
+    letter-spacing: -0.01em;
   }
 
   .section-desc {
-    font-size: 16px;
+    font-size: 15px;
     color: var(--text-muted);
-    max-width: 640px;
-    line-height: 1.75;
+    max-width: 620px;
+    line-height: 1.8;
+    font-weight: 400;
   }
 
   /* ── RESOURCE CARDS ── */
   .resources-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 24px;
+    gap: 20px;
     margin-top: 48px;
   }
 
   .resource-card {
-    background: var(--card-bg);
+    background: var(--bg-card);
     border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 36px 32px;
-    transition: all 0.3s;
+    border-radius: 6px;
+    padding: 32px;
+    transition: all 0.25s;
     position: relative;
     overflow: hidden;
   }
 
-  .resource-card::before {
+  .resource-card::after {
     content: '';
     position: absolute;
-    top: 0; left: 0; right: 0; height: 3px;
-    background: linear-gradient(90deg, var(--blue-accent), var(--blue-bright));
+    top: 0; left: 0; width: 4px; height: 100%;
+    background: var(--mdb-blue);
     opacity: 0;
-    transition: opacity 0.3s;
+    transition: opacity 0.25s;
   }
 
   .resource-card:hover {
-    border-color: rgba(59,130,246,0.35);
-    transform: translateY(-4px);
-    box-shadow: 0 16px 48px rgba(0,0,0,0.3);
+    border-color: rgba(65,143,222,0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.35);
   }
 
-  .resource-card:hover::before { opacity: 1; }
+  .resource-card:hover::after { opacity: 1; }
 
   .resource-card.featured {
     grid-column: 1 / -1;
@@ -299,83 +306,73 @@
     grid-template-columns: 1fr auto;
     gap: 40px;
     align-items: center;
-    background: linear-gradient(135deg, rgba(26,86,219,0.2), rgba(21,42,82,0.7));
-    border-color: rgba(59,130,246,0.3);
+    background: linear-gradient(135deg, rgba(0,75,135,0.3), rgba(0,37,61,0.8));
+    border-color: rgba(65,143,222,0.35);
   }
 
-  .resource-card.featured::before { opacity: 1; }
-
-  .card-icon {
-    width: 48px; height: 48px;
-    border-radius: 10px;
-    background: rgba(26,86,219,0.25);
-    border: 1px solid rgba(59,130,246,0.25);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 22px;
-    margin-bottom: 20px;
-  }
+  .resource-card.featured::after { opacity: 1; }
 
   .card-tag {
     display: inline-block;
-    background: rgba(240,180,41,0.15);
-    color: var(--gold);
-    border: 1px solid rgba(240,180,41,0.25);
-    border-radius: 100px;
-    padding: 3px 12px;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
+    background: rgba(0,75,135,0.35);
+    color: var(--mdb-blue-light);
+    border: 1px solid rgba(65,143,222,0.3);
+    border-radius: 3px;
+    padding: 3px 10px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     margin-bottom: 14px;
   }
 
   .card-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    font-weight: 700;
+    font-size: 20px;
+    font-weight: 800;
     color: var(--white);
     margin-bottom: 12px;
     line-height: 1.3;
+    letter-spacing: -0.01em;
   }
 
   .card-desc {
-    font-size: 14px;
+    font-size: 13px;
     color: var(--text-muted);
-    line-height: 1.7;
+    line-height: 1.75;
     margin-bottom: 24px;
+    font-weight: 400;
   }
 
   .card-link {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    color: var(--blue-bright);
-    font-size: 14px;
-    font-weight: 600;
+    color: var(--mdb-blue-light);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     text-decoration: none;
-    transition: gap 0.2s;
+    transition: gap 0.2s, color 0.2s;
   }
 
-  .card-link:hover { gap: 12px; }
-
-  .card-link svg { transition: transform 0.2s; }
-  .card-link:hover svg { transform: translateX(3px); }
+  .card-link:hover { gap: 12px; color: white; }
 
   .card-visual {
-    width: 200px;
-    background: linear-gradient(145deg, #0b1d3a, #071224);
-    border: 1px solid rgba(59,130,246,0.2);
-    border-radius: 10px;
-    padding: 20px;
+    width: 180px;
+    background: rgba(0,20,40,0.6);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 18px;
     flex-shrink: 0;
   }
 
   .card-visual-label {
     font-size: 9px;
-    font-weight: 700;
+    font-weight: 800;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--blue-bright);
+    color: var(--mdb-blue-light);
     margin-bottom: 12px;
     opacity: 0.7;
   }
@@ -384,31 +381,30 @@
     display: flex;
     align-items: flex-end;
     gap: 4px;
-    height: 50px;
+    height: 48px;
     margin-bottom: 14px;
   }
 
   .mini-bar {
     flex: 1;
-    background: rgba(59,130,246,0.15);
+    background: rgba(65,143,222,0.15);
     border-radius: 2px 2px 0 0;
     position: relative;
   }
 
-  .mini-bar::after {
-    content: '';
+  .mini-bar-fill {
     position: absolute;
     bottom: 0; left: 0; right: 0;
     border-radius: 2px 2px 0 0;
-    background: linear-gradient(180deg, #60a5fa, #1d4ed8);
+    background: linear-gradient(180deg, var(--mdb-blue-light), var(--mdb-blue));
   }
 
-  .mini-stat { font-size: 18px; font-weight: 700; color: var(--gold); font-family: 'Playfair Display', serif; }
-  .mini-stat-label { font-size: 10px; color: var(--text-muted); }
+  .mini-stat { font-size: 17px; font-weight: 800; color: var(--mdb-blue-light); }
+  .mini-stat-label { font-size: 10px; color: var(--text-muted); font-weight: 500; }
 
   /* ── SCHEDULE SECTION ── */
   .schedule-section {
-    background: linear-gradient(135deg, rgba(26,86,219,0.12), rgba(21,42,82,0.4));
+    background: linear-gradient(180deg, rgba(0,75,135,0.15) 0%, rgba(0,37,61,0.3) 100%);
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
   }
@@ -417,84 +413,33 @@
     max-width: 1100px;
     margin: 0 auto;
     padding: 80px 40px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
+    text-align: center;
   }
 
   .schedule-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(28px, 4vw, 44px);
-    font-weight: 700;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 800;
     line-height: 1.15;
     color: var(--white);
-    margin-bottom: 20px;
+    margin: 0 auto 18px;
+    letter-spacing: -0.02em;
   }
+
+  .schedule-title span { color: var(--mdb-blue-light); }
 
   .schedule-desc {
     font-size: 16px;
     color: var(--text-muted);
     line-height: 1.75;
-    margin-bottom: 32px;
+    max-width: 520px;
+    margin: 0 auto 36px;
+    font-weight: 400;
   }
-
-  .contact-card {
-    background: rgba(10,22,40,0.8);
-    border: 1px solid rgba(59,130,246,0.25);
-    border-radius: 14px;
-    padding: 36px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .contact-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0; height: 3px;
-    background: linear-gradient(90deg, var(--gold), var(--blue-bright));
-  }
-
-  .contact-icon {
-    width: 56px; height: 56px;
-    border-radius: 12px;
-    background: rgba(26,86,219,0.2);
-    border: 1px solid rgba(59,130,246,0.25);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 26px;
-    margin-bottom: 20px;
-  }
-
-  .contact-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    font-weight: 700;
-    color: white;
-    margin-bottom: 10px;
-  }
-
-  .contact-desc {
-    font-size: 14px;
-    color: var(--text-muted);
-    line-height: 1.7;
-    margin-bottom: 24px;
-  }
-
-  .contact-detail {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 14px;
-    color: var(--text-muted);
-    margin-bottom: 10px;
-  }
-
-  .contact-detail strong { color: var(--white); }
 
   /* ── FOOTER ── */
   footer {
-    background: #050d1a;
-    border-top: 1px solid rgba(59,130,246,0.12);
-    padding: 48px 40px;
+    background: var(--mdb-black);
+    padding: 52px 40px;
   }
 
   .footer-inner {
@@ -502,113 +447,143 @@
     margin: 0 auto;
   }
 
-  .footer-logo {
+  .footer-top {
     display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 24px;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+    margin-bottom: 36px;
+    flex-wrap: wrap;
   }
 
-  .footer-logo-box {
-    background: var(--blue-accent);
-    color: white;
-    font-family: 'Playfair Display', serif;
-    font-weight: 900;
-    font-size: 16px;
-    width: 40px; height: 40px;
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
+  .footer-address {
+    font-size: 12px;
+    color: #555;
+    line-height: 2;
   }
 
-  .footer-logo-text { font-size: 16px; font-weight: 600; color: var(--text-muted); }
+  .footer-address a {
+    color: #555;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-address a:hover { color: var(--mdb-blue-light); }
+
+  .footer-address strong { color: #888; font-weight: 600; }
 
   .footer-disclaimer {
-    font-size: 12px;
-    color: #445a78;
-    line-height: 1.8;
-    max-width: 900px;
-    margin-bottom: 20px;
+    font-size: 11px;
+    color: #444;
+    line-height: 1.9;
+    max-width: 100%;
+    margin-bottom: 24px;
+    font-weight: 400;
   }
 
   .footer-links {
     display: flex;
     flex-wrap: wrap;
-    gap: 16px;
+    gap: 6px 20px;
+    margin-bottom: 28px;
   }
 
   .footer-links a {
-    font-size: 12px;
-    color: #445a78;
+    font-size: 11px;
+    color: #555;
     text-decoration: none;
     transition: color 0.2s;
+    font-weight: 500;
   }
 
-  .footer-links a:hover { color: var(--blue-bright); }
+  .footer-links a:hover { color: var(--mdb-blue-light); }
 
-  .footer-divider { margin: 28px 0; border: none; border-top: 1px solid rgba(59,130,246,0.08); }
+  .footer-divider {
+    border: none;
+    border-top: 1px solid #1a1a1a;
+    margin-bottom: 20px;
+  }
 
   .footer-bottom {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 12px;
-    color: #2d4060;
+    font-size: 11px;
+    color: #333;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .footer-nasdaq {
+    font-size: 11px;
+    color: #555;
+    font-weight: 700;
+    letter-spacing: 0.08em;
   }
 
   /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
-    .hero-content { grid-template-columns: 1fr; gap: 20px; padding: 32px 24px 60px; }
-    .hero-banner-wrap { max-height: 220px; }
+    .topbar { padding: 14px 20px; }
+    .topbar-right { display: none; }
+    .hero-content { padding: 24px 20px 56px; }
     .resources-grid { grid-template-columns: 1fr; }
     .resource-card.featured { grid-template-columns: 1fr; }
     .card-visual { display: none; }
-    .schedule-inner { grid-template-columns: 1fr; padding: 60px 24px; }
-    .section { padding: 60px 24px; }
-    footer { padding: 40px 24px; }
+    .schedule-inner { padding: 60px 20px; }
+    .section { padding: 60px 20px; }
+    footer { padding: 40px 20px; }
+    .footer-top { flex-direction: column; }
   }
 
-  /* animations */
+  /* ── ANIMATIONS ── */
   .fade-in {
     opacity: 0;
-    transform: translateY(24px);
-    animation: fadeInUp 0.7s ease forwards;
+    transform: translateY(20px);
+    animation: fadeInUp 0.65s ease forwards;
   }
 
   @keyframes fadeInUp {
     to { opacity: 1; transform: translateY(0); }
   }
 
-  .delay-1 { animation-delay: 0.1s; }
-  .delay-2 { animation-delay: 0.2s; }
-  .delay-3 { animation-delay: 0.3s; }
-  .delay-4 { animation-delay: 0.4s; }
+  .d1 { animation-delay: 0.1s; }
+  .d2 { animation-delay: 0.2s; }
+  .d3 { animation-delay: 0.3s; }
 </style>
 </head>
 <body>
 
+<!-- ── TOP BAR ── -->
+<nav class="topbar">
+  <div class="mdb-logo-svg">
+    <div class="mdb-logo-mark"><span>MDB</span></div>
+    <div class="mdb-logo-wordmark">Capital</div>
+  </div>
+  <div class="topbar-right">
+    NASDAQ: MDBH
+    <a href="https://www.mdb.com" target="_blank">mdb.com</a>
+    <a href="tel:9452629010">(945) 262-9010</a>
+  </div>
+</nav>
+
 <!-- ── HERO ── -->
 <header class="hero">
   <div class="hero-banner-wrap">
-    <img src="hero-banner.png" alt="The Asymmetric Playbook: Public Venture Powered by MDB" class="hero-banner-img"/>
+    <img src="hero-banner.png" alt="The Asymmetric Playbook: Public Venture Powered by MDB Capital" class="hero-banner-img"/>
   </div>
-  <div class="hero-bg-mesh"></div>
-  <div class="hero-grid-lines"></div>
   <div class="hero-content">
-    <div>
-      <div class="hero-badge fade-in delay-1">Investment U Presentation</div>
-      <p class="hero-powered fade-in delay-2"><strong>MDB Capital</strong> — FINRA &amp; SIPC Member</p>
-      <div class="hero-cta-group fade-in delay-3">
-        <a href="#resources" class="btn-primary">
-          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-          View Resources
-        </a>
-        <a href="#schedule" class="btn-outline">
-          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-          Schedule a Call
-        </a>
-      </div>
+    <div class="hero-badge fade-in d1">Investment U · 2025 Presentation</div>
+    <p class="hero-tagline fade-in d2"><strong>MDB Capital</strong> &nbsp;·&nbsp; FINRA &amp; SIPC Member &nbsp;·&nbsp; NASDAQ: MDBH</p>
+    <div class="hero-cta-group fade-in d3">
+      <a href="#resources" class="btn-primary">
+        <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        View Resources
+      </a>
+      <a href="#schedule" class="btn-outline">
+        <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+        Schedule a Call
+      </a>
     </div>
-    <div></div>
   </div>
 </header>
 
@@ -616,28 +591,29 @@
 <section id="resources" class="section">
   <p class="section-label">Resources</p>
   <h2 class="section-title">Presentations &amp; Reports</h2>
-  <p class="section-desc">Access MDB Capital's research, strategies, and educational materials — all designed to help you understand the power of public venture investing.</p>
+  <p class="section-desc">Access MDB Capital's research, strategies, and educational materials — designed to help you understand the power of public venture investing.</p>
 
   <div class="resources-grid">
-    <!-- Featured -->
+
+    <!-- Featured Presentation -->
     <div class="resource-card featured">
       <div>
         <div class="card-tag">⭐ Featured Presentation</div>
         <h3 class="card-title">See the MDB Presentation<br>Given at Investment U</h3>
         <p class="card-desc">Watch or download the full presentation from Investment U — a deep dive into the asymmetric opportunity in public venture investing and how MDB Capital's strategies aim to optimize investor returns.</p>
-        <a href="#" class="card-link btn-primary" style="display:inline-flex;">
-          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        <a href="#" class="btn-primary" style="font-size:12px;padding:12px 24px;">
+          <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
           View / Download Presentation
         </a>
       </div>
       <div class="card-visual">
         <div class="card-visual-label">MDB Capital</div>
         <div class="mini-chart">
-          <div class="mini-bar" style="height:100%"><div style="position:absolute;bottom:0;left:0;right:0;height:25%;background:linear-gradient(180deg,#60a5fa,#1d4ed8);border-radius:2px 2px 0 0"></div></div>
-          <div class="mini-bar" style="height:100%"><div style="position:absolute;bottom:0;left:0;right:0;height:50%;background:linear-gradient(180deg,#60a5fa,#1d4ed8);border-radius:2px 2px 0 0"></div></div>
-          <div class="mini-bar" style="height:100%"><div style="position:absolute;bottom:0;left:0;right:0;height:35%;background:linear-gradient(180deg,#60a5fa,#1d4ed8);border-radius:2px 2px 0 0"></div></div>
-          <div class="mini-bar" style="height:100%"><div style="position:absolute;bottom:0;left:0;right:0;height:75%;background:linear-gradient(180deg,#60a5fa,#1d4ed8);border-radius:2px 2px 0 0"></div></div>
-          <div class="mini-bar" style="height:100%"><div style="position:absolute;bottom:0;left:0;right:0;height:90%;background:linear-gradient(180deg,#60a5fa,#1d4ed8);border-radius:2px 2px 0 0"></div></div>
+          <div class="mini-bar"><div class="mini-bar-fill" style="height:25%"></div></div>
+          <div class="mini-bar"><div class="mini-bar-fill" style="height:50%"></div></div>
+          <div class="mini-bar"><div class="mini-bar-fill" style="height:38%"></div></div>
+          <div class="mini-bar"><div class="mini-bar-fill" style="height:72%"></div></div>
+          <div class="mini-bar"><div class="mini-bar-fill" style="height:88%"></div></div>
         </div>
         <div class="mini-stat">MDB</div>
         <div class="mini-stat-label">Asymmetric Playbook</div>
@@ -645,32 +621,33 @@
     </div>
 
     <!-- Report 1 -->
-    <div class="resource-card" style="display:grid;grid-template-columns:140px 1fr;gap:24px;align-items:start;">
-      <img src="backtesting-report-cover.jpg" alt="Comprehensive Backtesting Analysis Report Cover" style="width:140px;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,0.4);flex-shrink:0;"/>
+    <div class="resource-card" style="display:grid;grid-template-columns:130px 1fr;gap:22px;align-items:start;">
+      <img src="backtesting-report-cover.jpg" alt="Comprehensive Backtesting Analysis" style="width:130px;border-radius:4px;box-shadow:0 6px 20px rgba(0,0,0,0.5);"/>
       <div>
         <div class="card-tag">Research Report</div>
         <h3 class="card-title">Comprehensive Backtesting Analysis of Investment Strategies</h3>
-        <p class="card-desc">Performance assessment across different MDB Capital portfolio companies. Actionable scenarios for aligning investment approaches with specific investor profiles — highlighting the trade-offs between short-term gains and long-term capital appreciation.</p>
+        <p class="card-desc">Performance assessment across different MDB Capital portfolio companies. Actionable scenarios for aligning investment approaches with specific investor profiles.</p>
         <a href="#" class="card-link">
           View / Download Report
-          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
         </a>
       </div>
     </div>
 
     <!-- Report 2 -->
-    <div class="resource-card" style="display:grid;grid-template-columns:140px 1fr;gap:24px;align-items:start;">
-      <img src="qsbs-report-cover.jpg" alt="QSBS Section 1202 Report Cover" style="width:140px;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,0.4);flex-shrink:0;"/>
+    <div class="resource-card" style="display:grid;grid-template-columns:130px 1fr;gap:22px;align-items:start;">
+      <img src="qsbs-report-cover.jpg" alt="QSBS Section 1202 Report" style="width:130px;border-radius:4px;box-shadow:0 6px 20px rgba(0,0,0,0.5);"/>
       <div>
         <div class="card-tag">Tax Strategy</div>
         <h3 class="card-title">The Benefits and Risks of QSBS Section 1202 &amp; Section 1045</h3>
-        <p class="card-desc">One of the most powerful — and most overlooked — advantages of investing in micro-cap and small-cap stocks. Learn how this tax strategy can dramatically impact your investment outcomes.</p>
+        <p class="card-desc">One of the most powerful — and most overlooked — tax advantages of investing in micro-cap and small-cap stocks. Learn how this strategy can significantly impact your outcomes.</p>
         <a href="#" class="card-link">
           View / Download Report
-          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
         </a>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -678,12 +655,12 @@
 
 <!-- ── SCHEDULE ── -->
 <section id="schedule" class="schedule-section">
-  <div style="max-width:1100px;margin:0 auto;padding:80px 40px;text-align:center;">
+  <div class="schedule-inner">
     <p class="section-label">Connect with MDB</p>
-    <h2 class="schedule-title" style="margin:0 auto 20px;">Talk Live with <em style="font-style:italic;color:var(--gold)">MDB Capital</em></h2>
-    <p class="schedule-desc" style="max-width:560px;margin:0 auto 36px;">Have questions? Want to learn more about MDB and Public Venture? Let's connect live.</p>
-    <a href="#" class="btn-primary" style="font-size:16px;padding:16px 40px;display:inline-flex;">
-      <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+    <h2 class="schedule-title">Talk Live with <span>MDB Capital</span></h2>
+    <p class="schedule-desc">Have questions? Want to learn more about MDB and Public Venture? Let's connect live.</p>
+    <a href="#" class="btn-primary" style="font-size:13px;padding:15px 40px;display:inline-flex;">
+      <svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
       Schedule a Call with MDB
     </a>
   </div>
@@ -692,29 +669,44 @@
 <!-- ── FOOTER ── -->
 <footer>
   <div class="footer-inner">
-    <div class="footer-logo">
-      <div class="footer-logo-box">MDB</div>
-      <span class="footer-logo-text">MDB Capital · FINRA &amp; SIPC Member</span>
+    <div class="footer-top">
+      <div class="mdb-logo-svg mdb-logo-sm">
+        <div class="mdb-logo-mark"><span>MDB</span></div>
+        <div class="mdb-logo-wordmark">Capital</div>
+      </div>
+      <div class="footer-address">
+        <div>14135 Midway Road, Suite G-150</div>
+        <div>Addison, TX 75001</div>
+        <div><a href="tel:9452629010">(945) 262-9010</a></div>
+        <div><a href="mailto:Info@mdb.com">Info@mdb.com</a></div>
+        <div><a href="https://www.mdb.com" target="_blank">www.mdb.com</a></div>
+        <div><strong>NASDAQ: MDBH</strong></div>
+      </div>
     </div>
+
     <p class="footer-disclaimer">
-      Important Notices: Investing in early stage private companies is speculative and involves risks, including illiquidity and loss of principal. Past performance is not indicative of future results. Unless clearly stated, nothing herein shall be construed to be an offer to sell, nor a solicitation of an offer to buy, any financial product. Securities trading, account management, and investment banking services are offered by MDB Capital, a registered broker-dealer and member of FINRA and SIPC. For additional information, please visit mdb.com or contact us at 945.262.9010.
+      <strong style="color:#555">Important Notices:</strong> Investing in early stage private companies is speculative and involves risks, including illiquidity and loss of principal. Past performance is not indicative of future results. Unless clearly stated, nothing herein shall be construed to be an offer to sell, nor a solicitation of an offer to buy, any financial product. Securities trading, account management, and investment banking services are offered by MDB Capital, a registered broker-dealer and member of FINRA and SIPC. For additional information, please visit mdb.com or contact us at (945) 262-9010.
     </p>
+
     <div class="footer-links">
       <a href="#">Customer Relationship Summary</a>
       <a href="#">Regulation Best Interest Disclosures</a>
       <a href="#">Brokerage Fees</a>
       <a href="#">SIPC Disclosure</a>
       <a href="#">FINRA Public Disclosure Program</a>
-      <a href="#">Order Routing &amp; Payment for Order Flow</a>
+      <a href="#">Order Routing &amp; Payment for Order Flow Disclosure</a>
       <a href="#">SEC Rule 606(a) Order Routing Reports</a>
-      <a href="#">Regulation S-P Privacy Statement</a>
-      <a href="#">Business Continuity Plan</a>
+      <a href="#">Regulation S-P Firm Privacy Statement</a>
+      <a href="#">Business Continuity Plan Disclosure Statement</a>
       <a href="#">Penny Stock Risk Disclosure</a>
     </div>
+
     <hr class="footer-divider"/>
+
     <div class="footer-bottom">
       <span>© 2026 MDB Capital. All rights reserved.</span>
-      <span>mdb.com · 945.262.9010</span>
+      <span class="footer-nasdaq">NASDAQ: MDBH</span>
+      <span>FINRA &amp; SIPC Member</span>
     </div>
   </div>
 </footer>
